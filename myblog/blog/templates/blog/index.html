@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog</title>
+  </head>
+  <body>
+    <h1>Welcome to the Blog</h1>
+    <div>
+      {% for post in posts %}
+      <div>
+        <h2>{{ post.title }}</h2>
+        <p>{{ post.body }}</p>
+        <p><strong>Author:</strong> {{ post.author }}</p>
+        <p><strong>Date:</strong> {{ post.date }}</p>
+        <hr />
+      </div>
+      {% empty %}
+      <p>No posts available.</p>
+      {% endfor %}
+    </div>
+  </body>
+</html>

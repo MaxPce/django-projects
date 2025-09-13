@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carta</title>
+  </head>
+  {% load static %}
+  <body>
+    <aside>
+      <ul>
+        <li><a href="{% url 'restaurant:index' %}">Home</a></li>
+        {% for place in places %}
+        <!-- ...existing code... -->
+        <li>
+          <a href="/restaurants/?restaurant={{ place.name }}"
+            >{{ place.name }}
+          </a>
+        </li>
+        <!-- ...existing code... -->
+        {% endfor %}
+      </ul>
+    </aside>
+    <h1>Carta</h1>
+    <section>
+      {% for place in places %}
+      <article>
+        <h2>{{ place.name }} el Restaurant</h2>
+        {% if place.restaurant %}
+        <p>Dirección: {{ place.address}}</p>
+        {% else %}
+        <p>Este lugar no es un restaurante</p>
+        {% endif %} {% if place.restaurant.work_is_at_night %}
+        <p>Trabajo de noche: Si</p>
+        {% else %}
+        <p>Trabajo de noche: No</p>
+        {% endif %}
+      </article>
+      {% endfor %}
+    </section>
+  </body>
+</html>

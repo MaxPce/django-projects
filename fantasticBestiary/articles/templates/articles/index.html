@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% load static %}
+    <title>LFG</title>
+  </head>
+  <body>
+    <h1>Articulos</h1>
+    <div>
+      {% for article in page.object_list %}
+      <h2>{{ article.name }}</h2>
+      <p>{{ article.origin }}</p>
+      {% if article.image %}
+      <!-- <img src="static/{{ article.image.name }}" alt="{{ article.name }}" /> -->
+      {% endif %} {% endfor %}
+    </div>
+    {% if page.has_previous %}
+    <a href="?page={{ page.previous_page_number }}">Back</a>
+    {% endif %} {% if page.has_next %}
+    <a href="?page={{ page.next_page_number }}">Next</a>
+    {% endif %}
+  </body>
+</html>

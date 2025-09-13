@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ data_post.title }}</title>
+  </head>
+  <body>
+    <h1>{{ data_post.title }}</h1>
+    <p>By {{ data_post.author }} on {{ data_post.date }}</p>
+    <div>{{ data_post.body }}</div>
+    <a href="{% url 'blog.index' %}">Back to Home</a>
+  </body>
+</html>

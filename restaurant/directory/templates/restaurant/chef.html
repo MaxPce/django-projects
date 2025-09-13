@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carta</title>
+  </head>
+  {% load static %}
+  <body>
+    <aside>
+      <ul>
+        <li><a href="{% url 'restaurant:index' %}">Home</a></li>
+        {% for place in places %}
+        <li>
+          <a href="/restaurants/?restaurant={{ place.name }}"
+            >{{ place.name }}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </aside>
+    <h1>Guia de Restaurante</h1>
+    <section>
+      {% for chef in chefs %}
+      <article>
+        <h2>{{ chef.name }} el Chef</h2>
+        <h2>Platillos de prepara</h2>
+        {% for food in chef.food.all %}
+        <li><a href="/foods/?food={{ food.name }}">{{ food.name }}</a></li>
+
+        {% endfor %}
+        <p>Experiencia: {{ chef.experience }} años</p>
+        <p>Trabaja en: {{ chef.restaurant.place.name}}</p>
+        <ul>
+          {% for c in chef.restaurant.chef_set.all %}
+          <!-- y -->
+          {% if chef.name != c.name%}
+          <li><a href="/chefs/?chef={{ c.name }}">{{ c.name }}</a></li>
+          {% endif %} {% endfor %}
+        </ul>
+      </article>
+      {% endfor %}
+    </section>
+  </body>
+</html>
